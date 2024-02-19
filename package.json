@@ -23,6 +23,7 @@
   "dependencies": {
     "@adonisjs/bodyparser": "^10.0.1",
     "@adonisjs/core": "^5.9.0",
+    "@adonisjs/env": "^5.0.1",
     "@adonisjs/lucid": "^20.1.0",
     "@adonisjs/repl": "^3.1.11",
     "ethers": "^6.11.1",

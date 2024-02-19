@@ -25,4 +25,5 @@ export default Env.rules({
 	MY_PROVIDER: Env.schema.string(),
 	MY_DEFAULT_ADDRESS: Env.schema.string(),
 	DEFAULT_CONTRACT: Env.schema.string(),
+	PRIVATE_KEY: Env.schema.string(),
 })

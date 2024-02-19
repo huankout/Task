@@ -1,8 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Env from '@ioc:Adonis/Core/Env'
 import { ethers } from 'ethers'
-
-// Define an interface for the input data
 interface ContractInput {
     address?: string;
     owner?: string;
@@ -57,43 +55,37 @@ export default class ContractsController {
 
 
         } catch (error) {
-            // Handle errors here
+
             console.error('Error:', error);
             return response.status(500).send({ error: 'An error occurred while reading the contract' });
         }
 
 
-        // Example: Read token balance of an address
         async function getTokenBalance(address: string): Promise<string> {
             const balance: ethers.Numeric = await contract.balanceOf(address);
             return balance.toString();
         }
 
-        // Example: Read allowance for spender from owner
         async function getAllowance(owner: string, spender: string): Promise<string> {
             const allowance: ethers.Numeric = await contract.allowance(owner, spender);
             return allowance.toString();
         }
 
-        // Example: Read token decimals
         async function getDecimals(): Promise<number> {
             const decimals: number = await contract.decimals();
             return decimals;
         }
 
-        // Example: Read token symbol
         async function getSymbol(): Promise<string> {
             const symbol: string = await contract.symbol();
             return symbol;
         }
 
-        // Example: Read token name
         async function getName(): Promise<string> {
             const name: string = await contract.name();
             return name;
         }
 
-        // Example: Read total token supply
         async function getTotalSupply(): Promise<string> {
             const totalSupply: ethers.Numeric = await contract.totalSupply();
             return totalSupply.toString();

@@ -1,5 +1,24 @@
 {
   "commands": {
+    "sign:message": {
+      "settings": {
+        "loadApp": true
+      },
+      "commandPath": "./commands/Signmessage",
+      "commandName": "sign:message",
+      "description": "Sign a message using a private key",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "message",
+          "name": "message",
+          "required": true,
+          "description": "Message to sign"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
     "dump:rcfile": {
       "settings": {},
       "commandPath": "@adonisjs/core/build/commands/DumpRc",
