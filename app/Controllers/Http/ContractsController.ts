@@ -5,6 +5,7 @@ interface ContractInput {
     address?: string;
     owner?: string;
     functionNames?: string[];
+    netWork?: string;
 }
 
 export default class ContractsController {
@@ -12,7 +13,7 @@ export default class ContractsController {
         // Parse input data from the request body
         const input: ContractInput = request.body();
         // Connect to an Ethereum node
-        const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'));
+        const provider = new ethers.JsonRpcProvider(input.netWork || Env.get('MY_PROVIDER'));
 
         // ERC-20 contract address
         const contractAddress = input.address || Env.get('DEFAULT_CONTRACT');

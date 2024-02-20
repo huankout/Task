@@ -1,5 +1,24 @@
 {
   "commands": {
+    "balance:checker": {
+      "settings": {
+        "loadApp": true
+      },
+      "commandPath": "./commands/BalanceChecker",
+      "commandName": "balance:checker",
+      "description": "check the balance of the ERC20 token",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "address",
+          "name": "address",
+          "required": true,
+          "description": "Your address"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
     "sign:message": {
       "settings": {
         "loadApp": true
@@ -16,6 +35,54 @@
           "description": "Message to sign"
         }
       ],
+      "aliases": [],
+      "flags": []
+    },
+    "stake:token": {
+      "settings": {
+        "loadApp": true
+      },
+      "commandPath": "./commands/StakingErc20",
+      "commandName": "stake:token",
+      "description": "Stake tokens",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "amount-to-stake",
+          "propertyName": "amountToStake",
+          "type": "number",
+          "alias": "a"
+        }
+      ]
+    },
+    "unstake:erc20": {
+      "settings": {
+        "loadApp": true
+      },
+      "commandPath": "./commands/UnstakeErc20",
+      "commandName": "unstake:erc20",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "amount",
+          "propertyName": "amount",
+          "type": "number",
+          "alias": "u"
+        }
+      ]
+    },
+    "withdraw:erc20": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/WithDrawErc20",
+      "commandName": "withdraw:erc20",
+      "description": "with",
+      "args": [],
       "aliases": [],
       "flags": []
     },

@@ -34,6 +34,7 @@ export default class SignMessage extends BaseCommand {
       // Output the results
       this.logger.info(`Message: ${message}`);
       this.logger.info(`Signature: ${signature}`);
+      console.log(privateKey)
     } catch (error) {
       this.logger.error(`Error: ${error.message}`);
     }

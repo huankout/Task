@@ -23,5 +23,5 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
-Route.get('read', 'ContractsController.readContract')
 Route.post('read', 'ContractsController.readContract')
+Route.post('stake', 'StakingsController.stakeTokens')
