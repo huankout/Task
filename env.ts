@@ -26,6 +26,6 @@ export default Env.rules({
 	MY_DEFAULT_ADDRESS: Env.schema.string(),
 	DEFAULT_CONTRACT: Env.schema.string(),
 	PRIVATE_KEY: Env.schema.string(),
-	STAKING_CONTRACT_ABI: Env.schema.string(),
+	// STAKING_CONTRACT_ABI: Env.schema.string(),
 	STAKING_CONTRACT_ADDRESS: Env.schema.string(),
 })

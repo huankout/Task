@@ -1,4 +1,4 @@
-import { BaseCommand, args } from '@adonisjs/core/build/standalone'
+import { BaseCommand } from '@adonisjs/core/build/standalone'
 import { ethers } from 'ethers'
 export default class WithDrawErc20 extends BaseCommand {
 

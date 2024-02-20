@@ -56,6 +56,25 @@
         }
       ]
     },
+    "staking:info": {
+      "settings": {
+        "loadApp": true
+      },
+      "commandPath": "./commands/StakingInfo",
+      "commandName": "staking:info",
+      "description": "get staking info",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "address",
+          "name": "address",
+          "required": true,
+          "description": "owner address"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
     "unstake:erc20": {
       "settings": {
         "loadApp": true
