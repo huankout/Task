@@ -4,7 +4,7 @@ export default class WithDrawErc20 extends BaseCommand {
 
   public static commandName = 'withdraw:erc20'
 
-  public static description = 'with'
+  public static description = 'withdraw ERC20'
 
   public static settings = {
 
