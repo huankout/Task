@@ -1,6 +1,4 @@
-// Import necessary modules
 import { BaseCommand, flags } from '@adonisjs/ace'
-import { ethers } from 'ethers'
 
 export default class StakeToken extends BaseCommand {
   public static commandName = 'stake:token'
@@ -12,19 +10,8 @@ export default class StakeToken extends BaseCommand {
   public amountToStake: number;
   public async run() {
     try {
-      const { default: fs } = await import('fs')
-      const { default: Env } = await import('@ioc:Adonis/Core/Env')
-      // Connect to Ethereum provider
-      const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'))
-
-      // Connect to wallet
-      const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
-
-      // Load your contract ABI and address
-      // const contractABI = Env.get('STAKING_CONTRACT_ABI')
-      const contractABI = JSON.parse(fs.readFileSync('./StakingContractABI.json', 'utf-8'));
-      const contractAddress = Env.get('STAKING_CONTRACT_ADDRESS')
-      const contract = new ethers.Contract(contractAddress, contractABI, wallet)
+      const { default: ConnectContractsController } = await import('App/Controllers/Http/ConnectContractsController')
+      const contract = await new ConnectContractsController().StakingContract()
 
       const { amountToStake } = this
       // Interaction with contract

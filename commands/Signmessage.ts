@@ -17,20 +17,15 @@ export default class SignMessage extends BaseCommand {
   public async run() {
     try {
       const { message } = this;
-
       // Retrieve the private key from environment variables
       const privateKey = process.env.PRIVATE_KEY;
-
       if (!privateKey) {
         throw new Error("Private key is not provided in environment variables.");
       }
-
       // Validate the private key
       const wallet = new ethers.Wallet(privateKey);
-
       // Sign the message
       const signature = await wallet.signMessage(message);
-
       // Output the results
       this.logger.info(`Message: ${message}`);
       this.logger.info(`Signature: ${signature}`);

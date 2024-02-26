@@ -1,5 +1,4 @@
 import { BaseCommand, flags } from '@adonisjs/core/build/standalone'
-import { ethers } from "ethers";
 export default class StakeMultipleErc721 extends BaseCommand {
 
   public static commandName = 'stake:multiple_erc721'
@@ -12,33 +11,19 @@ export default class StakeMultipleErc721 extends BaseCommand {
 
     stayAlive: false,
   }
-  @flags.number({ alias: 'a' })
-  public amountToStake: number;
+  @flags.numArray({ alias: 'TokenID' })
+  public NFTTokenID: number[];
   public async run() {
     try {
-      const { default: fs } = await import('fs')
-      const { default: Env } = await import('@ioc:Adonis/Core/Env')
-      // Connect to Ethereum provider
-      const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'))
+      const { default: ConnectContractsController } = await import('App/Controllers/Http/ConnectContractsController')
+      const contract = await new ConnectContractsController().StakingContract()
 
-      // Connect to wallet
-      const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
-
-      // Load your contract ABI and address
-      // const contractABI = Env.get('STAKING_CONTRACT_ABI')
-      const contractABI = JSON.parse(fs.readFileSync('./StakingContractABI.json', 'utf-8'));
-      const contractAddress = Env.get('STAKING_CONTRACT_ADDRESS')
-      const contract = new ethers.Contract(contractAddress, contractABI, wallet)
-
-      const { amountToStake } = this
+      const { NFTTokenID } = this
       // Interaction with contract
-      const transaction = await contract.stakeERC20(amountToStake)
-
-
+      const transaction = await contract.stakeMultipleERC721(NFTTokenID)
       // Wait for transaction confirmation
       await transaction.wait()
-
-      this.logger.info(`Successfully staked ${amountToStake}`)
+      this.logger.info(`Successfully staked ${NFTTokenID}`)
     } catch (error) {
       this.logger.error(`Error: ${error.message}`)
     }

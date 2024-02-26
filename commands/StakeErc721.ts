@@ -1,5 +1,4 @@
-import { BaseCommand, args, flags } from '@adonisjs/core/build/standalone'
-import { ethers } from "ethers";
+import { BaseCommand, flags } from '@adonisjs/core/build/standalone'
 export default class StakeErc721 extends BaseCommand {
 
   public static commandName = 'stake:erc721'
@@ -12,21 +11,12 @@ export default class StakeErc721 extends BaseCommand {
 
     stayAlive: false,
   }
-  @flags.number({ alias: 'i' })
+  @flags.number({ alias: 'tokenID' })
   public tokenID: number
   public async run() {
     try {
-      const { default: fs } = await import('fs')
-      const { default: Env } = await import('@ioc:Adonis/Core/Env')
-      // Connect to Ethereum provider
-      const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'))
-
-      // Connect to wallet
-      const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
-
-      const contractABI = JSON.parse(fs.readFileSync('./StakingContractABI.json', 'utf-8'));
-      const contractAddress = Env.get('STAKING_CONTRACT_ADDRESS')
-      const contract = new ethers.Contract(contractAddress, contractABI, wallet)
+      const { default: ConnectContractsController } = await import('App/Controllers/Http/ConnectContractsController')
+      const contract = await new ConnectContractsController().StakingContract()
 
       const { tokenID } = this
       // Interaction with contract

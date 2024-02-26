@@ -1,8 +1,7 @@
 import { BaseCommand, args } from '@adonisjs/core/build/standalone'
-import { ethers } from "ethers";
 export default class BalanceOfErc721 extends BaseCommand {
 
-  public static commandName = 'balance:of_erc721'
+  public static commandName = 'staking:ERC721_info'
 
   public static description = 'Check ID of the NFT that user are currently holding'
 
@@ -16,18 +15,8 @@ export default class BalanceOfErc721 extends BaseCommand {
   public address: string
   public async run() {
     try {
-      const { default: fs } = await import('fs')
-      const { default: Env } = await import('@ioc:Adonis/Core/Env')
-
-      const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'))
-
-      const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
-
-      const contractABI = JSON.parse(fs.readFileSync('./ERC721ContractABI.json', 'utf-8'));
-
-      const contractAddress = Env.get('NFT_CONTRACT_ADDRESS')
-
-      const contract = new ethers.Contract(contractAddress, contractABI, wallet)
+      const { default: ConnectContractsController } = await import('App/Controllers/Http/ConnectContractsController')
+      const contract = await new ConnectContractsController().StakingContract()
 
       const { address } = this
 

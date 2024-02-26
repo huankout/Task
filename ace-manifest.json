@@ -1,31 +1,12 @@
 {
   "commands": {
-    "balance:checker": {
-      "settings": {
-        "loadApp": true
-      },
-      "commandPath": "./commands/BalanceChecker",
-      "commandName": "balance:checker",
-      "description": "check the balance of the ERC20 token",
-      "args": [
-        {
-          "type": "string",
-          "propertyName": "address",
-          "name": "address",
-          "required": true,
-          "description": "Your address"
-        }
-      ],
-      "aliases": [],
-      "flags": []
-    },
-    "balance:of_erc721": {
+    "staking:ERC721_info": {
       "settings": {
         "loadApp": true,
         "stayAlive": false
       },
-      "commandPath": "./commands/BalanceOfErc721",
-      "commandName": "balance:of_erc721",
+      "commandPath": "./commands/StakingInfoERC721",
+      "commandName": "staking:ERC721_info",
       "description": "Check ID of the NFT that user are currently holding",
       "args": [
         {
@@ -34,26 +15,6 @@
           "name": "address",
           "required": true,
           "description": "Owner address"
-        }
-      ],
-      "aliases": [],
-      "flags": []
-    },
-    "get:nft_staking": {
-      "settings": {
-        "loadApp": true,
-        "stayAlive": false
-      },
-      "commandPath": "./commands/GetNftStaking",
-      "commandName": "get:nft_staking",
-      "description": "Get all ID of current NFT staking",
-      "args": [
-        {
-          "type": "string",
-          "propertyName": "address",
-          "name": "address",
-          "required": true,
-          "description": "owner address of NFT staking"
         }
       ],
       "aliases": [],
@@ -93,7 +54,7 @@
           "name": "token-id",
           "propertyName": "tokenID",
           "type": "number",
-          "alias": "i"
+          "alias": "tokenID"
         }
       ]
     },
@@ -109,10 +70,10 @@
       "aliases": [],
       "flags": [
         {
-          "name": "amount-to-stake",
-          "propertyName": "amountToStake",
-          "type": "number",
-          "alias": "a"
+          "name": "nft-token-id",
+          "propertyName": "NFTTokenID",
+          "type": "numArray",
+          "alias": "TokenID"
         }
       ]
     },
@@ -134,12 +95,12 @@
         }
       ]
     },
-    "staking:info": {
+    "staking:ERC20_info": {
       "settings": {
         "loadApp": true
       },
-      "commandPath": "./commands/StakingInfo",
-      "commandName": "staking:info",
+      "commandPath": "./commands/StakingInfoERC20",
+      "commandName": "staking:ERC20_info",
       "description": "get staking info",
       "args": [
         {
@@ -167,7 +128,25 @@
           "name": "amount",
           "propertyName": "amount",
           "type": "number",
-          "alias": "u"
+          "alias": "unstakeERC20"
+        }
+      ]
+    },
+    "unstake:erc721": {
+      "settings": {
+        "loadApp": true
+      },
+      "commandPath": "./commands/UnstakeErc721",
+      "commandName": "unstake:erc721",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "token-id",
+          "propertyName": "tokenID",
+          "type": "number",
+          "alias": "unstakeERC721"
         }
       ]
     },
@@ -182,6 +161,25 @@
       "args": [],
       "aliases": [],
       "flags": []
+    },
+    "withdraw:erc721": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/WithDrawErc721",
+      "commandName": "withdraw:erc721",
+      "description": "withdraw ERC721",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "token-id",
+          "propertyName": "tokenID",
+          "type": "number",
+          "alias": "tokenID"
+        }
+      ]
     },
     "dump:rcfile": {
       "settings": {},

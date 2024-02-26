@@ -1,5 +1,4 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Env from '@ioc:Adonis/Core/Env'
 import ConnectContractsController from "App/Controllers/Http/ConnectContractsController";
 import ContractValidator from 'App/Validators/ContractValidator';
 
