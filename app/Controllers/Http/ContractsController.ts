@@ -36,7 +36,6 @@ export default class ContractsController {
                         return response.status(400).send({ error: 'Invalid function specified' });
                 }
             }
-            console.log(results)
             // Return the results
             return response.status(200).send(results);
 

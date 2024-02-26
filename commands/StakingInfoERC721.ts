@@ -20,8 +20,8 @@ export default class BalanceOfErc721 extends BaseCommand {
 
       const { address } = this
 
-      const BalanceChecker = await contract.balanceOf(address)
-      this.logger.info(`Balance of NFT currently holding ${BalanceChecker}`)
+      const stakingNFT = await contract.getnftStakings(address)
+      this.logger.info(`NFT currently staking ${stakingNFT}`)
 
 
     } catch (error) {
