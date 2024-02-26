@@ -5,15 +5,12 @@ import ContractValidator from 'App/Validators/ContractValidator';
 export default class ContractsController {
 
     public async readContract({ request, response }: HttpContextContract) {
-
-
         try {
 
             const payload = await request.validate(ContractValidator);
 
-            const contract = await new ConnectContractsController().ERC20Contract();
 
-            const ownerAddress = payload.owner;
+            const contract = await new ConnectContractsController().ERC20Contract(payload.address);
 
             // Parse payload data from the request body
             const results: { [key: string]: any } = {};
@@ -24,9 +21,9 @@ export default class ContractsController {
             async function executeFunction(functionName: string) {
                 switch (functionName) {
                     case 'TokenBalance':
-                        return results.TokenBalance = await contract.balanceOf(ownerAddress);
+                        return results.TokenBalance = await contract.balanceOf(payload.owner);
                     case 'Allowance':
-                        return results.Allowance = await contract.allowance(ownerAddress, payload.address);
+                        return results.Allowance = await contract.allowance(payload.owner, payload.address);
                     case 'Decimals':
                         return results.Decimals = await contract.decimals();
                     case 'Symbol':
