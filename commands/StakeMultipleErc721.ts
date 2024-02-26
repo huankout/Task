@@ -1,12 +1,16 @@
-// Import necessary modules
-import { BaseCommand, flags } from '@adonisjs/ace'
-import { ethers } from 'ethers'
+import { BaseCommand, flags } from '@adonisjs/core/build/standalone'
+import { ethers } from "ethers";
+export default class StakeMultipleErc721 extends BaseCommand {
 
-export default class StakeToken extends BaseCommand {
-  public static commandName = 'stake:token'
-  public static description = 'Stake tokens'
+  public static commandName = 'stake:multiple_erc721'
+
+  public static description = ''
+
   public static settings = {
-    loadApp: true
+
+    loadApp: true,
+
+    stayAlive: false,
   }
   @flags.number({ alias: 'a' })
   public amountToStake: number;
@@ -40,3 +44,4 @@ export default class StakeToken extends BaseCommand {
     }
   }
 }
+

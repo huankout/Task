@@ -21,11 +21,12 @@ export default Env.rules({
 	APP_NAME: Env.schema.string(),
 	DRIVE_DISK: Env.schema.enum(['local'] as const),
 	NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
-	CONTRACT_ABI: Env.schema.string(),
+	// CONTRACT_ABI: Env.schema.string(),
 	MY_PROVIDER: Env.schema.string(),
 	MY_DEFAULT_ADDRESS: Env.schema.string(),
 	DEFAULT_CONTRACT: Env.schema.string(),
 	PRIVATE_KEY: Env.schema.string(),
 	// STAKING_CONTRACT_ABI: Env.schema.string(),
 	STAKING_CONTRACT_ADDRESS: Env.schema.string(),
+	NFT_CONTRACT_ADDRESS: Env.schema.string(),
 })

@@ -1,21 +1,18 @@
 import { BaseCommand, args } from '@adonisjs/core/build/standalone'
-import { ethers } from 'ethers'
+import { ethers } from "ethers";
+export default class BalanceOfErc721 extends BaseCommand {
 
-export default class BalanceChecker extends BaseCommand {
+  public static commandName = 'balance:of_erc721'
 
-  public static commandName = 'balance:checker'
-
-
-  public static description = 'check the balance of the ERC20 token'
+  public static description = 'Check ID of the NFT that user are currently holding'
 
   public static settings = {
 
     loadApp: true,
 
-
-    // stayAlive: false,
+    stayAlive: false,
   }
-  @args.string({ description: 'Your address' })
+  @args.string({ description: "Owner address" })
   public address: string
   public async run() {
     try {
@@ -26,16 +23,16 @@ export default class BalanceChecker extends BaseCommand {
 
       const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
 
-      const contractABI = JSON.parse(fs.readFileSync('./StakingContractABI.json', 'utf-8'));
+      const contractABI = JSON.parse(fs.readFileSync('./ERC721ContractABI.json', 'utf-8'));
 
-      const contractAddress = Env.get('STAKING_CONTRACT_ADDRESS')
+      const contractAddress = Env.get('NFT_CONTRACT_ADDRESS')
 
       const contract = new ethers.Contract(contractAddress, contractABI, wallet)
 
       const { address } = this
 
-      const BalanceChecker = await contract.staking(address)
-      this.logger.info(`Amount of staking ERC20Token ${BalanceChecker}`)
+      const BalanceChecker = await contract.balanceOf(address)
+      this.logger.info(`Balance of NFT currently holding ${BalanceChecker}`)
 
 
     } catch (error) {

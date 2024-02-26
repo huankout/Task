@@ -20,9 +20,9 @@ export default class UnstakeErc20 extends BaseCommand {
 
       const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'))
 
-      const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider).connect(provider)
+      const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
 
-      const contractABI = JSON.parse(fs.readFileSync('./abi.json', 'utf-8'));
+      const contractABI = JSON.parse(fs.readFileSync('./StakingContractABI.json', 'utf-8'));
 
       const contractAddress = Env.get('STAKING_CONTRACT_ADDRESS')
 

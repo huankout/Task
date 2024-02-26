@@ -1,10 +1,10 @@
-import { BaseCommand } from '@adonisjs/core/build/standalone'
-import { ethers } from 'ethers'
-export default class WithDrawErc20 extends BaseCommand {
+import { BaseCommand, args } from '@adonisjs/core/build/standalone'
+import { ethers } from "ethers";
+export default class GetNftStaking extends BaseCommand {
 
-  public static commandName = 'withdraw:erc20'
+  public static commandName = 'get:nft_staking'
 
-  public static description = 'withdraw ERC20'
+  public static description = 'Get all ID of current NFT staking'
 
   public static settings = {
 
@@ -12,10 +12,9 @@ export default class WithDrawErc20 extends BaseCommand {
 
     stayAlive: false,
   }
-  // @args.string({ description: 'token owner address' })
-  // public address: string
+  @args.string({ description: "owner address of NFT staking" })
+  public address: string
   public async run() {
-
     try {
       const { default: fs } = await import('fs')
       const { default: Env } = await import('@ioc:Adonis/Core/Env')
@@ -30,14 +29,14 @@ export default class WithDrawErc20 extends BaseCommand {
 
       const contract = new ethers.Contract(contractAddress, contractABI, wallet)
 
-      // const { address } = this
+      const { address } = this
 
-      await contract.withdrawERC20()
+      const getnftStaking = await contract.getnftStakings(address)
+      this.logger.info(`ID of current NFT staking ${getnftStaking}`)
 
-      this.logger.info(`pending`)
+
     } catch (error) {
       this.logger.error(`Error: ${error.message}`)
     }
-
   }
 }

@@ -1,10 +1,10 @@
-import { BaseCommand } from '@adonisjs/core/build/standalone'
-import { ethers } from 'ethers'
-export default class WithDrawErc20 extends BaseCommand {
+import { BaseCommand, args, flags } from '@adonisjs/core/build/standalone'
+import { ethers } from "ethers";
+export default class StakeErc721 extends BaseCommand {
 
-  public static commandName = 'withdraw:erc20'
+  public static commandName = 'stake:erc721'
 
-  public static description = 'withdraw ERC20'
+  public static description = ''
 
   public static settings = {
 
@@ -12,32 +12,33 @@ export default class WithDrawErc20 extends BaseCommand {
 
     stayAlive: false,
   }
-  // @args.string({ description: 'token owner address' })
-  // public address: string
+  @flags.number({ alias: 'i' })
+  public tokenID: number
   public async run() {
-
     try {
       const { default: fs } = await import('fs')
       const { default: Env } = await import('@ioc:Adonis/Core/Env')
-
+      // Connect to Ethereum provider
       const provider = new ethers.JsonRpcProvider(Env.get('MY_PROVIDER'))
 
+      // Connect to wallet
       const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
 
       const contractABI = JSON.parse(fs.readFileSync('./StakingContractABI.json', 'utf-8'));
-
       const contractAddress = Env.get('STAKING_CONTRACT_ADDRESS')
-
       const contract = new ethers.Contract(contractAddress, contractABI, wallet)
 
-      // const { address } = this
+      const { tokenID } = this
+      // Interaction with contract
+      const transaction = await contract.stakeERC721(tokenID)
 
-      await contract.withdrawERC20()
 
-      this.logger.info(`pending`)
+      // Wait for transaction confirmation
+      await transaction.wait()
+
+      this.logger.info(`Successfully staked ${tokenID}`)
     } catch (error) {
       this.logger.error(`Error: ${error.message}`)
     }
-
   }
 }

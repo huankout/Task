@@ -19,6 +19,46 @@
       "aliases": [],
       "flags": []
     },
+    "balance:of_erc721": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/BalanceOfErc721",
+      "commandName": "balance:of_erc721",
+      "description": "Check ID of the NFT that user are currently holding",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "address",
+          "name": "address",
+          "required": true,
+          "description": "Owner address"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
+    "get:nft_staking": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/GetNftStaking",
+      "commandName": "get:nft_staking",
+      "description": "Get all ID of current NFT staking",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "address",
+          "name": "address",
+          "required": true,
+          "description": "owner address of NFT staking"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
     "sign:message": {
       "settings": {
         "loadApp": true
@@ -37,6 +77,44 @@
       ],
       "aliases": [],
       "flags": []
+    },
+    "stake:erc721": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/StakeErc721",
+      "commandName": "stake:erc721",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "token-id",
+          "propertyName": "tokenID",
+          "type": "number",
+          "alias": "i"
+        }
+      ]
+    },
+    "stake:multiple_erc721": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/StakeMultipleErc721",
+      "commandName": "stake:multiple_erc721",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "amount-to-stake",
+          "propertyName": "amountToStake",
+          "type": "number",
+          "alias": "a"
+        }
+      ]
     },
     "stake:token": {
       "settings": {
@@ -100,7 +178,7 @@
       },
       "commandPath": "./commands/WithDrawErc20",
       "commandName": "withdraw:erc20",
-      "description": "with",
+      "description": "withdraw ERC20",
       "args": [],
       "aliases": [],
       "flags": []
