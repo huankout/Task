@@ -31,7 +31,8 @@ export default class ContractValidator {
   public messages = {
     'address.range': `Invalid address`,
     'owner': `Invalid owner`,
-    'enum': `Invalid function`,
+    'functionNames.enum': `Invalid function`,
+    'functionNames.distinct': `Duplicate functions`,
     'netWork.enum': `Invalid network`
   };
 
