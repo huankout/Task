@@ -6,10 +6,10 @@ import StakingContractABI from "../../../ContractsABI/StakingContractABI.json";
 
 export default class ConnectContracts {
     public async ERC20Contract(contractAddress, network) {
-        const netWork = new ethers.JsonRpcProvider(network);
+        const provider = new ethers.JsonRpcProvider(network);
         const ERC20ABI = ERC20ContractABI;
 
-        return new ethers.Contract(contractAddress, ERC20ABI, netWork);
+        return new ethers.Contract(contractAddress, ERC20ABI, provider);
     }
     public async ERC721Contract() {
         const netWork = new ethers.JsonRpcProvider(Env.get('SEPOLIA_PROVIDER'));
