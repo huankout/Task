@@ -15,8 +15,8 @@ export default class StakeMultipleErc721 extends BaseCommand {
   public NFTTokenID: number[];
   public async run() {
     try {
-      const { default: ConnectContractsController } = await import('App/Controllers/Http/ConnectContractsController')
-      const contract = await new ConnectContractsController().StakingContract()
+      const { default: ConnectContracts } = await import('App/Common/Contracts/index')
+      const contract = await new ConnectContracts().StakingContract()
 
       const { NFTTokenID } = this
       // Interaction with contract

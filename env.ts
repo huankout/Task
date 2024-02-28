@@ -29,4 +29,5 @@ export default Env.rules({
 	// STAKING_CONTRACT_ABI: Env.schema.string(),
 	STAKING_CONTRACT_ADDRESS: Env.schema.string(),
 	ERC721_CONTRACT_ADDRESS: Env.schema.string(),
+	GOERLI_PROVIDER: Env.schema.string(),
 })

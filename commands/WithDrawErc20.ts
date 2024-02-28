@@ -16,8 +16,8 @@ export default class WithDrawErc20 extends BaseCommand {
   public async run() {
 
     try {
-      const { default: ConnectContractsController } = await import('App/Controllers/Http/ConnectContractsController')
-      const contract = await new ConnectContractsController().StakingContract()
+      const { default: ConnectContracts } = await import('App/Common/Contracts/index')
+      const contract = await new ConnectContracts().StakingContract()
 
       // const { address } = this
 
