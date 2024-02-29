@@ -10,12 +10,8 @@ enum functions {
   'TotalSupply'
 }
 enum network {
-  'https://sepolia.infura.io/v3/7ee172a909e943a99ca6803a055bd79d',
-  'https://goerli.infura.io/v3/7ee172a909e943a99ca6803a055bd79d',
   'Goerli',
-  'goerli',
   'Sepolia',
-  'sepolia'
 }
 const functionValues = Object.keys(functions).filter((v) => isNaN(Number(v)))
 const networkValues = Object.keys(network).filter((v) => isNaN(Number(v)))
