@@ -1,25 +1,5 @@
 {
   "commands": {
-    "staking:ERC721_info": {
-      "settings": {
-        "loadApp": true,
-        "stayAlive": false
-      },
-      "commandPath": "./commands/StakingInfoERC721",
-      "commandName": "staking:ERC721_info",
-      "description": "Check ID of the NFT that user are currently holding",
-      "args": [
-        {
-          "type": "string",
-          "propertyName": "address",
-          "name": "address",
-          "required": true,
-          "description": "Owner address"
-        }
-      ],
-      "aliases": [],
-      "flags": []
-    },
     "sign:message": {
       "settings": {
         "loadApp": true
@@ -113,6 +93,120 @@
       ],
       "aliases": [],
       "flags": []
+    },
+    "staking:ERC721_info": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/StakingInfoERC721",
+      "commandName": "staking:ERC721_info",
+      "description": "Check ID of the NFT that user are currently holding",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "address",
+          "name": "address",
+          "required": true,
+          "description": "Owner address"
+        }
+      ],
+      "aliases": [],
+      "flags": []
+    },
+    "swap": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/Swap",
+      "commandName": "swap",
+      "description": "",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "to",
+          "name": "to",
+          "required": true
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "amount-in",
+          "propertyName": "amountIn",
+          "type": "number",
+          "alias": "amountIn"
+        },
+        {
+          "name": "amount-out-min",
+          "propertyName": "amountOutMin",
+          "type": "number",
+          "alias": "amountOutMin"
+        },
+        {
+          "name": "path",
+          "propertyName": "path",
+          "type": "array",
+          "alias": "path"
+        }
+      ]
+    },
+    "uniswap": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/Uniswap",
+      "commandName": "uniswap",
+      "description": "",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "tokenIn",
+          "name": "tokenIn",
+          "required": true
+        },
+        {
+          "type": "string",
+          "propertyName": "tokenOut",
+          "name": "tokenOut",
+          "required": true
+        },
+        {
+          "type": "string",
+          "propertyName": "recipient",
+          "name": "recipient",
+          "required": true
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "fee",
+          "propertyName": "fee",
+          "type": "number",
+          "alias": "fee"
+        },
+        {
+          "name": "amount-in",
+          "propertyName": "amountIn",
+          "type": "number",
+          "alias": "amountIn"
+        },
+        {
+          "name": "amount-out-minimum",
+          "propertyName": "amountOutMinimum",
+          "type": "number",
+          "alias": "amountOutMinimum"
+        },
+        {
+          "name": "sqrt-price-limit-x96",
+          "propertyName": "sqrtPriceLimitX96",
+          "type": "number",
+          "alias": "sqrtPriceLimitX96"
+        }
+      ]
     },
     "unstake:erc20": {
       "settings": {
