@@ -53,7 +53,7 @@ export default class Uniswap extends BaseCommand {
       const tx = await contract.exactInputSingle(params, overrides)
 
       await tx.wait()
-      this.logger.info(`Amount Out ${tx.amountOut}`)
+      this.logger.info(`Successfully Swap`);
 
     } catch (error) {
       this.logger.error(`Error: ${error.message}`)
