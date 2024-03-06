@@ -114,44 +114,6 @@
       "aliases": [],
       "flags": []
     },
-    "swap": {
-      "settings": {
-        "loadApp": true,
-        "stayAlive": false
-      },
-      "commandPath": "./commands/Swap",
-      "commandName": "swap",
-      "description": "",
-      "args": [
-        {
-          "type": "string",
-          "propertyName": "to",
-          "name": "to",
-          "required": true
-        }
-      ],
-      "aliases": [],
-      "flags": [
-        {
-          "name": "amount-in",
-          "propertyName": "amountIn",
-          "type": "number",
-          "alias": "amountIn"
-        },
-        {
-          "name": "amount-out-min",
-          "propertyName": "amountOutMin",
-          "type": "number",
-          "alias": "amountOutMin"
-        },
-        {
-          "name": "path",
-          "propertyName": "path",
-          "type": "array",
-          "alias": "path"
-        }
-      ]
-    },
     "uniswap": {
       "settings": {
         "loadApp": true,
@@ -189,10 +151,10 @@
           "alias": "fee"
         },
         {
-          "name": "amount-in",
-          "propertyName": "amountIn",
+          "name": "input-amount",
+          "propertyName": "inputAmount",
           "type": "number",
-          "alias": "amountIn"
+          "alias": "inputAmount"
         },
         {
           "name": "amount-out-minimum",

@@ -31,4 +31,6 @@ export default Env.rules({
 	ERC721_CONTRACT_ADDRESS: Env.schema.string(),
 	GOERLI_PROVIDER: Env.schema.string(),
 	UNISWAP_CONTRACT_ADDRESS: Env.schema.string(),
+	WETH_UNI_POOL_ADDRESS: Env.schema.string(),
+	FACTORY_ADDRESS: Env.schema.string(),
 })
