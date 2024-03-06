@@ -33,12 +33,10 @@ export default class ConnectContracts {
     public async ConnectWallet() {
         return new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
     }
-    public async PoolContract(token0, token1, fee) {
+    public async PoolContract(tokenIn, tokenOut, fee) {
         const factory = '0x0227628f3F023bb0B980b67D528571c95c6DaC1c'
         const FactoryContract = new ethers.Contract(factory, IUniswapV3FactoryABI, provider)
-        const V3pool = await FactoryContract.getPool(token0, token1, fee);
-
-        // const poolAddress = Env.get('WETH_UNI_POOL_ADDRESS')
+        const V3pool = await FactoryContract.getPool(tokenIn, tokenOut, fee);
         return new ethers.Contract(V3pool, PoolABI, provider)
     }
 }
