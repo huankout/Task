@@ -16,6 +16,9 @@ export default class ConnectContracts {
     //     const contractAddress = Env.get('ERC721_CONTRACT_ADDRESS')
     //     return new ethers.Contract(contractAddress, ERC721ContractABI, netWork);
     // }
+    public async ERC20Connect(contractAddress) {
+        return new ethers.Contract(contractAddress, ERC20ContractABI, provider)
+    }
     public async StakingContract() {
 
         const wallet = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
@@ -34,8 +37,9 @@ export default class ConnectContracts {
         return new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
     }
     public async PoolContract(tokenIn, tokenOut, fee) {
-        const factory = '0x0227628f3F023bb0B980b67D528571c95c6DaC1c'
+        const factory = Env.get('FACTORY_ADDRESS')
         const FactoryContract = new ethers.Contract(factory, IUniswapV3FactoryABI, provider)
+        // const createPool = await FactoryContract.createPool(tokenIn, tokenOut, fee)
         const V3pool = await FactoryContract.getPool(tokenIn, tokenOut, fee);
         return new ethers.Contract(V3pool, PoolABI, provider)
     }

@@ -43,6 +43,13 @@ export default class Uniswap extends BaseCommand {
 
       const PoolContract = await new ConnectContracts().PoolContract(tokenIn, tokenOut, fee)
 
+      const tokenInConnect = await new ConnectContracts().ERC20Connect(tokenIn)
+
+      const tokenOutConnect = await new ConnectContracts().ERC20Connect(tokenOut)
+
+      const nameTokenIn = await tokenInConnect.symbol()
+      const nameTokenOut = await tokenOutConnect.symbol()
+
       const slot0 = await PoolContract.slot0();
 
       const PoolInfo = { "SqrtX96": slot0.sqrtPriceX96.toString(), "Pair": "WETH/UNI", "Decimal0": 18, "Decimal1": 18 }
@@ -70,10 +77,12 @@ export default class Uniswap extends BaseCommand {
       const tx = await contract.exactInputSingle(params, overrides)
 
       await tx.wait()
+
       const amountOut = inputAmount / buyOneOfToken0
-      this.logger.info(`You pay ${inputAmount} WETH and receive ${amountOut} UNI`);
-      this.logger.info(`1 UNI = ${buyOneOfToken0.toString()} WETH`);
-      this.logger.info(`1 WETH = ${buyOneOfToken1.toString()} UNI`)
+
+      this.logger.info(`You pay ${inputAmount} ${nameTokenIn} and receive ${amountOut} ${nameTokenOut}`);
+      this.logger.info(`1 ${nameTokenOut} = ${buyOneOfToken0.toString()} ${nameTokenIn}`);
+      this.logger.info(`1 ${nameTokenIn} = ${buyOneOfToken1.toString()} ${nameTokenOut}`)
     } catch (error) {
       this.logger.error(`Error: ${error.message}`)
     }
