@@ -8,6 +8,8 @@ import IUniswapV3FactoryABI from "../../../ContractsABI/IUniswapV3FactoryABI.jso
 
 const provider = new ethers.JsonRpcProvider(Env.get('SEPOLIA_PROVIDER'))
 const signer = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
+const uniswapAddress = Env.get('UNISWAP_CONTRACT_ADDRESS')
+const factory = Env.get('FACTORY_ADDRESS')
 
 export default class ConnectContracts {
 
@@ -17,10 +19,13 @@ export default class ConnectContracts {
     }
     public async ERC20Connect(tokenIn, inputAmount) {
         const contract = new ethers.Contract(tokenIn, ERC20ContractABI, signer)
+        const overrides = {
+            gasPrice: 1000000000,
+            gasLimit: 100000,
+        };
+        await contract.approve(uniswapAddress, inputAmount, overrides)
 
-        await contract.transferFrom(Env.get('MY_DEFAULT_ADDRESS'), Env.get('UNISWAP_CONTRACT_ADDRESS'), inputAmount)
-
-        await contract.approve(Env.get('UNISWAP_CONTRACT_ADDRESS'), inputAmount)
+        await contract.transfer(uniswapAddress, inputAmount, overrides)
 
         return contract
     }
@@ -30,20 +35,15 @@ export default class ConnectContracts {
         return new ethers.Contract(contractAddress, StakingContractABI, signer)
     }
     public async SwappingContract() {
-        const contractAddress = Env.get('UNISWAP_CONTRACT_ADDRESS')
-
-        return new ethers.Contract(contractAddress, UniswapRouterABI, signer)
+        return new ethers.Contract(uniswapAddress, UniswapRouterABI, signer)
     }
 
     public async PoolContract(tokenIn, tokenOut, fee) {
-        const factory = Env.get('FACTORY_ADDRESS')
-
         const FactoryContract = new ethers.Contract(factory, IUniswapV3FactoryABI, signer)
 
         const poolAddress = await FactoryContract.getPool(tokenIn, tokenOut, fee)
-        const connect = new ethers.Contract(poolAddress, PoolABI, provider)
-        console.log(poolAddress)
 
+        const connect = new ethers.Contract(poolAddress, PoolABI, provider)
         return connect
     }
 }
