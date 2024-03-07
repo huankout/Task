@@ -44,10 +44,8 @@ export default class Uniswap extends BaseCommand {
       const tokenInConnect = await new ConnectContracts().ERC20Connect(tokenIn, amountIn)
 
       const tokenOutConnect = await new ConnectContracts().ERC20Connect(tokenOut, amountIn)
-      const PoolContract = await new ConnectContracts().PoolContract(tokenIn, tokenOut, fee)
 
-      const nameTokenIn = await tokenInConnect.symbol()
-      const nameTokenOut = await tokenOutConnect.symbol()
+      const PoolContract = await new ConnectContracts().PoolContract(tokenIn, tokenOut, fee)
 
       const slot0 = await PoolContract.slot0();
 
@@ -76,6 +74,9 @@ export default class Uniswap extends BaseCommand {
       await tx.wait()
 
       const amountOut = inputAmount / buyOneOfToken0
+
+      const nameTokenIn = await tokenInConnect.symbol()
+      const nameTokenOut = await tokenOutConnect.symbol()
 
       this.logger.info(`You pay ${inputAmount} ${nameTokenIn} and receive ${amountOut} ${nameTokenOut}`);
       this.logger.info(`1 ${nameTokenOut} = ${buyOneOfToken0.toString()} ${nameTokenIn}`);
