@@ -36,16 +36,15 @@ export default class Uniswap extends BaseCommand {
   public async run() {
     try {
       const { default: ConnectContracts } = await import('App/Common/Contracts/index')
-
       const { tokenIn, tokenOut, fee, recipient, inputAmount, amountOutMinimum, sqrtPriceLimitX96 } = this
+      const amountIn = ethers.parseUnits(inputAmount.toString(), 18)
 
       const contract = await new ConnectContracts().SwappingContract()
 
+      const tokenInConnect = await new ConnectContracts().ERC20Connect(tokenIn, amountIn)
+
+      const tokenOutConnect = await new ConnectContracts().ERC20Connect(tokenOut, amountIn)
       const PoolContract = await new ConnectContracts().PoolContract(tokenIn, tokenOut, fee)
-
-      const tokenInConnect = await new ConnectContracts().ERC20Connect(tokenIn)
-
-      const tokenOutConnect = await new ConnectContracts().ERC20Connect(tokenOut)
 
       const nameTokenIn = await tokenInConnect.symbol()
       const nameTokenOut = await tokenOutConnect.symbol()
@@ -63,8 +62,6 @@ export default class Uniswap extends BaseCommand {
       const buyOneOfToken1 = (1 / buyOneOfToken0)
 
       const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
-
-      const amountIn = ethers.parseUnits(inputAmount.toString(), 18)
 
       const params = {
         tokenIn, tokenOut, fee, recipient, deadline, amountIn, amountOutMinimum, sqrtPriceLimitX96

@@ -25,7 +25,7 @@
       ],
       "Database/*": [
         "./database/*"
-      ]
+      ],
     },
     "types": [
       "@adonisjs/core",

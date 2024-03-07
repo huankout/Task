@@ -24,4 +24,3 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 Route.post('read', 'ContractsController.readContract')
-Route.post('stake', 'StakingsController.stakeTokens')
