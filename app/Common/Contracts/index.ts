@@ -10,7 +10,6 @@ const provider = new ethers.JsonRpcProvider(Env.get('SEPOLIA_PROVIDER'))
 const signer = new ethers.Wallet(Env.get('PRIVATE_KEY'), provider)
 const uniswapAddress = Env.get('UNISWAP_CONTRACT_ADDRESS')
 const factory = Env.get('FACTORY_ADDRESS')
-
 export default class ConnectContracts {
 
     public async ERC20Contract(contractAddress, network) {

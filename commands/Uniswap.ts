@@ -49,7 +49,7 @@ export default class Uniswap extends BaseCommand {
 
       const slot0 = await PoolContract.slot0();
 
-      const PoolInfo = { "SqrtX96": slot0.sqrtPriceX96.toString(), "Pair": "WETH/UNI", "Decimal0": 18, "Decimal1": 18 }
+      const PoolInfo = { "SqrtX96": slot0.sqrtPriceX96.toString(), "Decimal0": 18, "Decimal1": 18 }
 
       const sqrtPriceX96 = PoolInfo.SqrtX96;
       const Decimal0 = PoolInfo.Decimal0;
