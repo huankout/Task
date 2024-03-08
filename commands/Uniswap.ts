@@ -36,7 +36,7 @@ export default class Uniswap extends BaseCommand {
   public async run() {
     try {
       const { default: ConnectContracts } = await import('App/Common/Contracts/index')
-      const { tokenIn, tonOut, fee, recipient, inputAmount, amountOutMinimum, sqrtPriceLimitX96 } = this
+      const { tokenIn, tokenOut, fee, recipient, inputAmount, amountOutMinimum, sqrtPriceLimitX96 } = this
       const amountIn = ethers.parseUnits(inputAmount.toString(), 18)
 
       const contract = await new ConnectContracts().SwappingContract()
