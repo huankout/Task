@@ -24,3 +24,4 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 Route.post('read', 'ContractsController.readContract')
+Route.post('crawl', 'CrawlersController.crawlERC20')
