@@ -13,7 +13,7 @@ export default class CrawlersController {
             ToBlock: 5326188,
         }
 
-        const transaction = await provider.getBlock("0xaaa7f00e889e1ff08d7409c77b6dc6a767735a2b6be4ad3107de6dba26ff25c7f6")
+        const transaction = await provider.getBlock("0xa7f00e889e1ff08d7409c77b6dc6a767735a2b6be4ad3107de6dba26ff25c7f6")
         console.log(transaction)
 
         return response.status(200)
