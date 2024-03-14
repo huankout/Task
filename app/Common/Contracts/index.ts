@@ -13,8 +13,12 @@ const factory = Env.get('FACTORY_ADDRESS')
 export default class ConnectContracts {
 
     public async ERC20Contract(contractAddress, network) {
-        new ethers.JsonRpcProvider(network);
-        return new ethers.Contract(contractAddress, ERC20ContractABI, signer);
+        const provider = new ethers.JsonRpcProvider(network);
+        // const signer = new ethers.Wallet(Env.get('PRIVATE_KEY', provider))
+        return new ethers.Contract(contractAddress, ERC20ContractABI, provider);
+    }
+    public async ConnectToken() {
+        return new ethers.Contract(Env.get('ERC20_CONTRACT_ADDRESS'), ERC20ContractABI, provider);
     }
     public async ERC20Connect(tokenIn, inputAmount) {
         const contract = new ethers.Contract(tokenIn, ERC20ContractABI, signer)
@@ -38,7 +42,7 @@ export default class ConnectContracts {
     }
 
     public async PoolContract(tokenIn, tokenOut, fee) {
-        const FactoryContract = new ethers.Contract(factory, IUniswapV3FactoryABI, signer)
+        const FactoryConátract = new ethers.Contract(factory, IUniswapV3FactoryABI, signer)
 
         const poolAddress = await FactoryContract.getPool(tokenIn, tokenOut, fee)
 
