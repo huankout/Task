@@ -42,7 +42,7 @@ export default class ConnectContracts {
     }
 
     public async PoolContract(tokenIn, tokenOut, fee) {
-        const FactoryConátract = new ethers.Contract(factory, IUniswapV3FactoryABI, signer)
+        const FactoryContract = new ethers.Contract(factory, IUniswapV3FactoryABI, signer)
 
         const poolAddress = await FactoryContract.getPool(tokenIn, tokenOut, fee)
 
